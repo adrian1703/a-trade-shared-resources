@@ -1,18 +1,27 @@
 openapi: 3.0.3
 info:
-  title: "A trade data api"
-  version: "1.0.0"
-  description: "This api publishes stock aggregates using Polygon.io S3 Storage. This data is published using Kafka."
+  description: This api publishes stock aggregates using Polygon.io S3 Storage. This
+    data is published using Kafka.
+  title: A trade data api
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
 paths:
   /v1/fetch-aggregate-data:
     post:
-      summary: "Fetches minute and daily aggregates dating back 5 years"
+      operationId: v1_fetch_aggregate_data_post
       responses:
-        '200':
-          description: "Fetching data successful"
+        "200":
+          description: Fetching data successful
+      summary: Fetches minute and daily aggregates dating back 5 years
+      x-openapi-router-controller: openapi_server.controllers.default_controller
   /v1/publish-aggregate-data:
     post:
-      summary: "Publish aggregate data to Kafka"
+      operationId: v1_publish_aggregate_data_post
       responses:
-        '200':
-          description: "Publishing data successful"
+        "200":
+          description: Publishing data successful
+      summary: Publish aggregate data to Kafka
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas: {}
