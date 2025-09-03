@@ -14,7 +14,7 @@ paths:
         "200":
           description: Fetching data successful
       summary: Fetches minute and daily aggregates dating back 5 years
-      x-openapi-router-controller: openapi_server.controllers.default_controller
+      x-openapi-router-controller: app.controllers.default_controller
   /v1/publish-aggregate-data:
     post:
       operationId: v1_publish_aggregate_data_post
@@ -22,6 +22,6 @@ paths:
         "200":
           description: Publishing data successful
       summary: Publish aggregate data to Kafka
-      x-openapi-router-controller: openapi_server.controllers.default_controller
+      x-openapi-router-controller: app.controllers.default_controller
 components:
   schemas: {}
