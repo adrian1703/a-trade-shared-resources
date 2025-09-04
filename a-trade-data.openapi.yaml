@@ -28,6 +28,23 @@ paths:
           description: Publishing data successful
       summary: Publish aggregate data to Kafka
       x-openapi-router-controller: app.controllers.default_controller
+  /v1/purge-aggregate-data:
+    post:
+      operationId: v1_purge_aggregate_data_post
+      responses:
+        "200":
+          description: Purging data successful
+      summary: Purge published data to Kafka
+      x-openapi-router-controller: app.controllers.default_controller
+
+  /v1/test-publish:
+    post:
+      operationId: v1_test_publish
+      responses:
+        "200":
+          description: Published a test message
+      summary: Testing publish
+      x-openapi-router-controller: app.controllers.test_controller
 components:
   schemas:
     FetchAggregateDataResult:
