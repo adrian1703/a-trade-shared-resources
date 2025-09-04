@@ -13,6 +13,10 @@ paths:
       responses:
         "200":
           description: Fetching data successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FetchAggregateDataResult"
       summary: Fetches minute and daily aggregates dating back 5 years
       x-openapi-router-controller: app.controllers.default_controller
   /v1/publish-aggregate-data:
@@ -24,4 +28,20 @@ paths:
       summary: Publish aggregate data to Kafka
       x-openapi-router-controller: app.controllers.default_controller
 components:
-  schemas: {}
+  schemas:
+    FetchAggregateDataResult:
+      type: object
+      properties:
+        pages_fetched:
+          type: integer
+          description: Number of S3 pages fetched from Polygon
+        day_agg_downloaded:
+          type: integer
+          description: Number of daily aggregate files downloaded
+        min_agg_downloaded:
+          type: integer
+          description: Number of minute aggregate files downloaded
+      required:
+        - pages_fetched
+        - day_agg_downloaded
+        - min_agg_downloaded
