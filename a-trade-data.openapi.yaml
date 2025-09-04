@@ -6,6 +6,7 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8080
+  - url: http://localhost:7001
 paths:
   /v1/fetch-aggregate-data:
     post:
