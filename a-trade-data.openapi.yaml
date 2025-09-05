@@ -11,6 +11,8 @@ paths:
   /v1/fetch-aggregate-data:
     post:
       operationId: v1_fetch_aggregate_data_post
+      summary: Fetches minute and daily aggregates dating back 5 years
+      x-openapi-router-controller: app.controllers.default_controller
       responses:
         "200":
           description: Fetching data successful
@@ -18,24 +20,40 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FetchAggregateDataResult"
-      summary: Fetches minute and daily aggregates dating back 5 years
-      x-openapi-router-controller: app.controllers.default_controller
-  /v1/publish-aggregate-data:
+
+  /v1/publish-aggregate-data/{mode}:
     post:
       operationId: v1_publish_aggregate_data_post
+      summary: Publish aggregate data to Kafka
+      x-openapi-router-controller: app.controllers.default_controller
+      parameters:
+        - name: mode
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [ all, day_agg, minute_agg ]
+          description: Determines which aggregate data to publish
       responses:
         "200":
           description: Publishing data successful
-      summary: Publish aggregate data to Kafka
-      x-openapi-router-controller: app.controllers.default_controller
-  /v1/purge-aggregate-data:
+
+  /v1/purge-aggregate-data/{mode}:
     post:
       operationId: v1_purge_aggregate_data_post
+      summary: Purge published data to Kafka
+      x-openapi-router-controller: app.controllers.default_controller
+      parameters:
+        - name: mode
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [ all, day_agg, minute_agg ]
+          description: Determines which aggregate data to purge
       responses:
         "200":
           description: Purging data successful
-      summary: Purge published data to Kafka
-      x-openapi-router-controller: app.controllers.default_controller
 
   /v1/test-publish:
     post:
