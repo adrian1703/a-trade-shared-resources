@@ -4,7 +4,7 @@
   "namespace": "kafka_message",
   "fields": [
     {"name": "ticker", "type": "string"},
-    {"name": "timestamp", "type": "long", "logicalType": "timestamp-millis"},
+    {"name": "window_start", "type": "long", "logicalType": "timestamp-millis"},
     {"name": "open", "type": "double"},
     {"name": "high", "type": "double"},
     {"name": "low", "type": "double"},
